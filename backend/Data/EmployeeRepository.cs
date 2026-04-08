@@ -11,7 +11,6 @@ namespace CompanyAPI.Data
         public EmployeeRepository(IConfiguration config)
             => _conn = config.GetConnectionString("DefaultConnection")!;
 
-        // Reusable mapper — avoids duplicate mapping code across methods
         private static Employee Map(SqlDataReader r) => new Employee
         {
             EmployeeId     = (int)r["EmployeeId"],

@@ -1,20 +1,15 @@
-using CompanyAPI.Data;   // Add this at the top
+using CompanyAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// ✅ Add controllers support
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// ✅ Register repositories for Dependency Injection
 builder.Services.AddScoped<DepartmentRepository>();
 builder.Services.AddScoped<EmployeeRepository>();
 
-// ✅ Allow React on port 3000 to call this API
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowReact", policy =>
         policy.WithOrigins("http://localhost:3000")
@@ -23,21 +18,17 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
-// ✅ Use CORS policy BEFORE MapControllers
 app.UseCors("AllowReact");
 
 app.UseHttpsRedirection();
 
-// ✅ Map controller routes
 app.MapControllers();
 
-// Keep your original weatherforecast endpoint
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"

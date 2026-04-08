@@ -11,7 +11,6 @@ namespace CompanyAPI.Models
         public int      DepartmentId   { get; set; }
         public string   DepartmentName { get; set; } = string.Empty;
 
-        // Calculated from DateOfBirth — never stored in DB
         public int Age
         {
             get

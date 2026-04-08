@@ -23,7 +23,8 @@ namespace CompanyAPI.Data
                 list.Add(new Department {
                     DepartmentId   = (int)r["DepartmentId"],
                     DepartmentCode = r["DepartmentCode"].ToString()!,
-                    DepartmentName = r["DepartmentName"].ToString()!
+                    DepartmentName = r["DepartmentName"].ToString()!,
+                    Description = r["Description"].ToString()!
                 });
             return list;
         }
@@ -40,7 +41,8 @@ namespace CompanyAPI.Data
             return new Department {
                 DepartmentId   = (int)r["DepartmentId"],
                 DepartmentCode = r["DepartmentCode"].ToString()!,
-                DepartmentName = r["DepartmentName"].ToString()!
+                DepartmentName = r["DepartmentName"].ToString()!,
+                Description = r["Description"].ToString()!
             };
         }
 
@@ -51,6 +53,7 @@ namespace CompanyAPI.Data
                           { CommandType = CommandType.StoredProcedure };
             cmd.Parameters.AddWithValue("@DepartmentCode", d.DepartmentCode);
             cmd.Parameters.AddWithValue("@DepartmentName", d.DepartmentName);
+            cmd.Parameters.AddWithValue("@Description", d.Description);
             con.Open();
             cmd.ExecuteNonQuery();
         }
@@ -63,6 +66,7 @@ namespace CompanyAPI.Data
             cmd.Parameters.AddWithValue("@DepartmentId",   d.DepartmentId);
             cmd.Parameters.AddWithValue("@DepartmentCode", d.DepartmentCode);
             cmd.Parameters.AddWithValue("@DepartmentName", d.DepartmentName);
+            cmd.Parameters.AddWithValue("@Description", d.Description);
             con.Open();
             cmd.ExecuteNonQuery();
         }
