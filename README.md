@@ -16,6 +16,8 @@ A full-stack web application for managing company departments and employees.
 ---
 
 ## Project Structure
+
+```bash
 company-app/
 ├── backend/          → .NET Core Web API (port 5000)
 │   └── CompanyAPI/
